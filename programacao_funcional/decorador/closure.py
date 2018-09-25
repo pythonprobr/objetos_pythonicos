@@ -1,11 +1,11 @@
-def fabrica_de_multiplicadores():
-    def dobro(n):
-        return n * 2
+def fabrica_de_multiplicadores(multiplicador):
+    def multiplicar(n):
+        return n * multiplicador
 
-    return dobro
+    return multiplicar
 
 
-dobro_externo = fabrica_de_multiplicadores()
-dobro_externo_2 = fabrica_de_multiplicadores()
-print(dobro_externo is dobro_externo_2)
-print(dobro_externo(3))
+dobro = fabrica_de_multiplicadores(2)
+triplo = fabrica_de_multiplicadores(3)
+print(dobro(3))
+print(triplo(4))
