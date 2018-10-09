@@ -2,7 +2,10 @@ from functools import wraps
 from time import sleep, strftime
 
 
-def logar(fmt='%H:%M:%S'):
+def logar(fn=None, *, fmt='%H:%M:%S'):
+    if fn is not None:
+        return logar(fmt=fmt)(fn)
+
     def decorator(f):
         @wraps(f)
         def executar_com_tempo(*arg, **kwargs):
@@ -14,7 +17,7 @@ def logar(fmt='%H:%M:%S'):
     return decorator
 
 
-@logar(fmt='%H:%M:%S')
+@logar()
 def mochileiro():
     return 42
 
