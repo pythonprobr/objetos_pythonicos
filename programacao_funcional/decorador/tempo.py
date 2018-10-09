@@ -2,21 +2,24 @@ from functools import wraps
 from time import sleep, strftime
 
 
-def logar(f):
-    @wraps(f)
-    def executar_com_tempo(*arg, **kwargs):
-        print(strftime('%H:%M:%S'))
-        return f(*arg, **kwargs)
+def logar(fmt='%H:%M:%S'):
+    def decorator(f):
+        @wraps(f)
+        def executar_com_tempo(*arg, **kwargs):
+            print(strftime(fmt))
+            return f(*arg, **kwargs)
 
-    return executar_com_tempo
+        return executar_com_tempo
+
+    return decorator
 
 
-@logar
+@logar(fmt='%H:%M:%S')
 def mochileiro():
     return 42
 
 
-@logar
+@logar(fmt='%d/%m/%Y %H:%M:%S')
 def ola(nome):
     return f'Olá {nome}'
 
