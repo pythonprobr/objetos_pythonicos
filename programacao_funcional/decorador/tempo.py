@@ -1,7 +1,6 @@
-from functools import wraps
 from time import sleep, strftime
 
-from decorator import getfullargspec, decorator
+from decorator import decorator, getfullargspec
 
 
 @decorator
