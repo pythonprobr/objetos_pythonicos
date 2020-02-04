@@ -26,6 +26,7 @@ set()
 404
 
 """
+from decorator import decorate
 
 
 class Flask:
@@ -33,9 +34,12 @@ class Flask:
         self.rotas = dict()
 
     def rota(self, path):
+        def execute_f(func, *args, **kwargs):
+            return func(*args, **kwargs)
+
         def decorator(f):
             self.rotas[path] = f
-            return f
+            return decorate(f, execute_f)
 
         return decorator
 
